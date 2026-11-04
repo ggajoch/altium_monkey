@@ -145,7 +145,7 @@ class AltiumPcbComponentBody(PcbGraphicalObject):
 
         # Raw byte preservation for byte-identical round-trip
         self._flags1_raw: int = 0x04
-        self._skip_bytes_9: bytes = b"\x00" * 5
+        self._skip_bytes_9: bytes = b"\xff\xff\xff\xff\x00"  # native "no union"
         self._skip_bytes_16: bytes = b"\x00" * 2
         self._properties_raw: bytes | None = None
         self._properties_raw_signature: tuple | None = (

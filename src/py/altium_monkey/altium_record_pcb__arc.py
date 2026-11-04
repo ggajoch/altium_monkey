@@ -63,7 +63,7 @@ class AltiumPcbArc(PcbGraphicalObject):
         self.radius: int = 0
         self.start_angle: float = 0.0  # Degrees
         self.end_angle: float = 0.0  # Degrees
-        self.polygon_index: int = 0
+        self.polygon_index: int = 0xFFFF  # Not in a polygon
         self.subpoly_index: int = 0
         self.union_index: int = 0xFFFFFFFF  # No union sentinel
         self.user_routed: bool = True
