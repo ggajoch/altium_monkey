@@ -79,7 +79,7 @@ class AltiumPcbRegion(PcbV7LayerTokenMixin, PcbGraphicalObject):
 
     def __init__(self) -> None:
         super().__init__()
-        self.polygon_index: int = 0
+        self.polygon_index: int = 0xFFFF  # Not in a polygon
         self.hole_count: int = 0
         self.outline_vertex_count: int = 0
         self.outline_vertices: list[RegionVertex] = []
@@ -95,9 +95,8 @@ class AltiumPcbRegion(PcbV7LayerTokenMixin, PcbGraphicalObject):
 
         # Raw byte preservation for byte-identical round-trip
         self._flags1_raw: int = 0x04  # Full flags1 byte (not just known bits)
-        self._skip_bytes_9: bytes = (
-            b"\x00" * 5
-        )  # Bytes at offset 9-13 (union_index + pad)
+        # Bytes at offset 9-13 (union_index + pad); native "no union" value
+        self._skip_bytes_9: bytes = b"\xff\xff\xff\xff\x00"
         self._skip_bytes_16: bytes = b"\x00" * 2  # Bytes at offset 16-17
         self._properties_raw: bytes | None = None  # Original properties string bytes
         self._properties_raw_signature: tuple | None = (

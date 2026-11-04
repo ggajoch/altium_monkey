@@ -3571,7 +3571,6 @@ class PcbLibBuilder:
         track.width = self._mil_to_internal_units(width_mil)
         track.component_index = None
         track.net_index = None
-        track.polygon_index = 0
         track.subpoly_index = 0
         track.union_index = 0xFFFFFFFF
         track.is_locked = False
@@ -3624,7 +3623,6 @@ class PcbLibBuilder:
         arc.width = self._mil_to_internal_units(width_mil)
         arc.component_index = None
         arc.net_index = None
-        arc.polygon_index = 0
         arc.subpoly_index = 0
         arc.union_index = 0xFFFFFFFF
         arc.is_locked = False

@@ -62,7 +62,7 @@ class AltiumPcbTrack(PcbGraphicalObject):
         self.start_y: int = 0
         self.end_x: int = 0
         self.end_y: int = 0
-        self.polygon_index: int = 0
+        self.polygon_index: int = 0xFFFF  # Not in a polygon
         self.subpoly_index: int = 0
         self.union_index: int = 0xFFFFFFFF  # No union sentinel
         self.user_routed: bool = True
