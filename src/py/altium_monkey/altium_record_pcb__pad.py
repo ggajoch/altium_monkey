@@ -1176,6 +1176,9 @@ class AltiumPcbPad(PcbGraphicalObject):
         self._has_mask_expansion = True
         self._has_power_plane_clearance_cache_state = True
         self._has_planes_cache_state = True
+        if not self._subrecord5_extended_data:
+            # New pads get the modern 202-byte record (N/A hole tolerances) like native ones.
+            self._has_hole_tolerances = True
         current_sig = self._subrecord5_extended_state_signature()
 
         if self._subrecord5_extended_data:
