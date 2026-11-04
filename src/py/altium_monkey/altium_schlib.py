@@ -1579,6 +1579,7 @@ class AltiumSymbol(_ManagedUniqueIdOwner):
         x: int = 0,
         y: int = 0,
         is_hidden: bool = False,
+        auto_position: bool = True,
         font_id: int = 1,
         read_only: bool = False,
         index_in_sheet: int | None = None,
@@ -1588,12 +1589,15 @@ class AltiumSymbol(_ManagedUniqueIdOwner):
     ) -> AltiumSchParameter:
         """
         Add a parameter to this symbol.
+
+        `auto_position=False` unticks Altium's Autoposition (NotAutoPosition=T).
         """
         param = AltiumSchParameter()
         param.name = name
         param.text = text
         param.location = CoordPoint.from_mils(x, y)
         param.is_hidden = is_hidden
+        param.auto_position = auto_position
         param.font_id = font_id
         param.owner_part_id = None if owner_part_id == -1 else owner_part_id
         param.unique_id = unique_id
@@ -1614,16 +1618,20 @@ class AltiumSymbol(_ManagedUniqueIdOwner):
         y: int = 0,
         *,
         color: int = 0x000000,
+        auto_position: bool = True,
         font_id: int = 1,
         owner_part_id: int = -1,
     ) -> AltiumSchDesignator:
         """
         Add a designator to this symbol.
+
+        `auto_position=False` unticks Altium's Autoposition.
         """
         desig = AltiumSchDesignator()
         desig.text = text
         desig.location = CoordPoint.from_mils(x, y)
         desig.color = color
+        desig.auto_position = auto_position
         desig.font_id = font_id
         desig.owner_part_id = None if owner_part_id == -1 else owner_part_id
         return self.add_object(desig)
