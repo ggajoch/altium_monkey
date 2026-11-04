@@ -1568,7 +1568,7 @@ class AltiumSymbol(_ManagedUniqueIdOwner):
         label.color = color
         label.font_id = font_id
         label.orientation = orientation
-        label.owner_part_id = None if owner_part_id == -1 else owner_part_id
+        label.owner_part_id = 1 if owner_part_id == -1 else owner_part_id
         return self.add_object(label)
 
     def add_parameter(
@@ -1595,7 +1595,8 @@ class AltiumSymbol(_ManagedUniqueIdOwner):
         param.location = CoordPoint.from_mils(x, y)
         param.is_hidden = is_hidden
         param.font_id = font_id
-        param.owner_part_id = None if owner_part_id == -1 else owner_part_id
+        # Altium writes OwnerPartId=-1 (all parts) on symbol parameters and designators.
+        param.owner_part_id = owner_part_id
         param.unique_id = unique_id
         _as_dynamic(param)._extra_fields = {}
         if read_only:
@@ -1625,7 +1626,7 @@ class AltiumSymbol(_ManagedUniqueIdOwner):
         desig.location = CoordPoint.from_mils(x, y)
         desig.color = color
         desig.font_id = font_id
-        desig.owner_part_id = None if owner_part_id == -1 else owner_part_id
+        desig.owner_part_id = owner_part_id
         return self.add_object(desig)
 
     def add_image(
@@ -1653,7 +1654,7 @@ class AltiumSymbol(_ManagedUniqueIdOwner):
         image.keep_aspect = keep_aspect
         image.location = CoordPoint.from_mils(x, y)
         image.corner = CoordPoint.from_mils(corner_x, corner_y)
-        image.owner_part_id = None if owner_part_id == -1 else owner_part_id
+        image.owner_part_id = 1 if owner_part_id == -1 else owner_part_id
         return self.add_object(image)
 
     def add_implementation(
