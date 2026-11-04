@@ -1019,9 +1019,9 @@ class AltiumPcbFootprint:
             subpoly_index: Native sub-polygon index.
             cavity_height_mils: Cavity definition height in mils for
                 `PcbRegionKind.CAVITY_DEFINITION` regions.
-            v7_layer: Optional native `V7_LAYER` property override for legacy
-                `PcbLayer`/integer layer inputs. Semantic layer refs and tokens
-                should be supplied through `layer`.
+            v7_layer: Optional override of the native `V7_LAYER` property,
+                which is otherwise derived from `layer`. Semantic layer refs
+                and tokens should be supplied through `layer`.
 
         Returns:
             The authored `AltiumPcbRegion` record.

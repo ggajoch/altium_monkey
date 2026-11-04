@@ -103,7 +103,7 @@ class AltiumPcbRegion(PcbV7LayerTokenMixin, PcbGraphicalObject):
         self._properties_raw_signature: tuple | None = (
             None  # Snapshot of property fields at parse time
         )
-        self._properties_emit_trailing_null: bool = False
+        self._properties_emit_trailing_null: bool = True  # native REGION properties end in NUL
         self._properties_include_keepout_restrictions: bool = True
         self._trailing_data: bytes = b""
         self._trailing_data_outline_signature: tuple | None = None

@@ -3829,19 +3829,11 @@ class PcbLibBuilder:
         region.subpoly_index = int(subpoly_index)
         region.cavity_height = self._mil_to_internal_units(cavity_height_mil)
         region.properties = {}
-        if (
-            explicit_v7_layer_token is not None
-            or layer_storage.ref.legacy_layer is None
-        ):
-            region.v7_layer = region_v7_layer_text(
-                layer_storage.ref,
-                explicit_v7_layer_token,
-            )
+        region.v7_layer = region_v7_layer_text(
+            layer_storage.ref,
+            explicit_v7_layer_token,
+        )
         if region.cavity_height or semantic_kind == PcbRegionKind.CAVITY_DEFINITION:
-            region.v7_layer = region_v7_layer_text(
-                layer_storage.ref,
-                explicit_v7_layer_token,
-            )
             region.properties["NAME"] = ""
             region.properties["ARCRESOLUTION"] = "0.5mil"
             region.properties["CAVITYHEIGHT"] = _format_mil_value(
